@@ -24,8 +24,8 @@ namespace RestWithASPNETUdemy.Controllers
         {
             if(IsNumeric(firstNumber) && IsNumeric(secondNumber))
             {
-                var sum = ConvertToDecimal(firstNumber) + ConvertToDecimal(secondNumber);
-                    return Ok(sum.ToString());
+                var operation = ConvertToDecimal(firstNumber) + ConvertToDecimal(secondNumber);
+                    return Ok(operation.ToString());
             }
             return BadRequest("Invalid Input");
         }
@@ -35,8 +35,8 @@ namespace RestWithASPNETUdemy.Controllers
         {
             if (IsNumeric(firstNumber) && IsNumeric(secondNumber))
             {
-                var sum = ConvertToDecimal(firstNumber) - ConvertToDecimal(secondNumber);
-                return Ok(sum.ToString());
+                var operation = ConvertToDecimal(firstNumber) - ConvertToDecimal(secondNumber);
+                return Ok(operation.ToString());
             }
             return BadRequest("Invalid Input");
         }
@@ -46,8 +46,8 @@ namespace RestWithASPNETUdemy.Controllers
         {
             if (IsNumeric(firstNumber) && IsNumeric(secondNumber))
             {
-                var sum = ConvertToDecimal(firstNumber) * ConvertToDecimal(secondNumber);
-                return Ok(sum.ToString());
+                var operation = ConvertToDecimal(firstNumber) * ConvertToDecimal(secondNumber);
+                return Ok(operation.ToString());
             }
             return BadRequest("Invalid Input");
         }
@@ -57,8 +57,30 @@ namespace RestWithASPNETUdemy.Controllers
         {
             if (IsNumeric(firstNumber) && IsNumeric(secondNumber))
             {
-                var sum = ConvertToDecimal(firstNumber) / ConvertToDecimal(secondNumber);
-                return Ok(sum.ToString());
+                var operation = ConvertToDecimal(firstNumber) / ConvertToDecimal(secondNumber);
+                return Ok(operation.ToString());
+            }
+            return BadRequest("Invalid Input");
+        }
+
+        [HttpGet("med/{firstNumber}/{secondNumber}")]
+        public IActionResult Med(string firstNumber, string secondNumber)
+        {
+            if (IsNumeric(firstNumber) && IsNumeric(secondNumber))
+            {
+                var operation = ( ConvertToDecimal(firstNumber) + ConvertToDecimal(secondNumber) ) / 2;
+                return Ok(operation.ToString());
+            }
+            return BadRequest("Invalid Input");
+        }
+
+        [HttpGet("sqrt/{firstNumber}")]
+        public IActionResult Sqrt(string firstNumber)
+        {
+            if (IsNumeric(firstNumber))
+            {
+                var operation = Math.Sqrt((double)ConvertToDecimal(firstNumber));
+                return Ok(operation.ToString());
             }
             return BadRequest("Invalid Input");
         }
