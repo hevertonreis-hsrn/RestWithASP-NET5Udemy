@@ -16,54 +16,54 @@ namespace RestWithASPNETUdemy.Controllers
     [ApiController]
     [Route("api/[controller]/v{version:apiVersion}")]
     
-    public class BooksController : ControllerBase
+    public class BookController : ControllerBase
     {
-        private readonly ILogger<BooksController> _logger;
-        private IBooksBusiness _booksBusiness;
+        private readonly ILogger<BookController> _logger;
+        private IBookBusiness _bookBusiness;
 
-        public BooksController(ILogger<BooksController> logger, IBooksBusiness booksBusiness)
+        public BookController(ILogger<BookController> logger, IBookBusiness bookBusiness)
         {
             _logger = logger;
-            _booksBusiness = booksBusiness;
+            _bookBusiness = bookBusiness;
         }
        
         // GET: api/Books
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_booksBusiness.FindAll());
+            return Ok(_bookBusiness.FindAll());
         }
 
         // GET: api/Books/5
         [HttpGet("{id}")]
         public IActionResult Get(long id)
         {
-            var book = _booksBusiness.FindByID(id);
+            var book = _bookBusiness.FindByID(id);
             if (book == null) NotFound();
             return Ok(book);
         }
 
         // POST: api/Books
         [HttpPost]
-        public IActionResult Post([FromBody] Books books)
+        public IActionResult Post([FromBody] Book book)
         {
-            if (books == null) return BadRequest();
-            return Ok(_booksBusiness.Create(books));
+            if (book == null) return BadRequest();
+            return Ok(_bookBusiness.Create(book));
         }
 
         // PUT: api/Books/5
-        [HttpPut("{id}")]
-        public IActionResult Put([FromBody] Books books)
+        [HttpPut]
+        public IActionResult Put([FromBody] Book book)
         {
-            if(books == null) return BadRequest();
-            return Ok(_booksBusiness.Update(books));
+            if(book == null) return BadRequest();
+            return Ok(_bookBusiness.Update(book));
         }    
 
         // DELETE: api/Books/5
         [HttpDelete("{id}")]
         public IActionResult Delete(long id)
         {
-            _booksBusiness.Delete(id);
+            _bookBusiness.Delete(id);
             return NoContent();
         }
 

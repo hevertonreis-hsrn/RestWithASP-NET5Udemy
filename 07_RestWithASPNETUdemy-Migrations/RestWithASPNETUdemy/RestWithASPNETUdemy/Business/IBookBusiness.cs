@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace RestWithASPNETUdemy.Business.Implementations
 {
-    public interface IBooksBusiness
+    public interface IBookBusiness
     {
-        Books Create(Books books);
-        Books FindByID(long id);
-        List<Books> FindAll();
-        Books Update(Books books);
+        Book Create(Book book);
+        Book FindByID(long id);
+        List<Book> FindAll();
+        Book Update(Book book);
         void Delete(long id);
     }
 }
